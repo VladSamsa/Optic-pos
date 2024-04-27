@@ -41,7 +41,7 @@
                         <th>Nombre</th>
                         <th>Dirección</th>
                         <th>Documento</th>
-                        <th>Tipo de persona</th>
+
                         <th>Estado</th>
                         <th>Acciones</th>
                     </tr>
@@ -59,9 +59,7 @@
                             <p class="fw-semibold mb-1">{{$item->persona->documento->tipo_documento}}</p>
                             <p class="text-muted mb-0">{{$item->persona->numero_documento}}</p>
                         </td>
-                        <td>
-                            {{$item->persona->tipo_persona}}
-                        </td>
+
                         <td>
                             @if ($item->persona->estado == 1)
                             <span class="badge rounded-pill text-bg-success">activo</span>
