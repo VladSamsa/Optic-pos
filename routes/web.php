@@ -13,6 +13,7 @@ use App\Http\Controllers\profileController;
 use App\Http\Controllers\proveedorController;
 use App\Http\Controllers\roleController;
 use App\Http\Controllers\userController;
+use App\Http\Controllers\Venta2Controller;
 use App\Http\Controllers\ventaController;
 use Illuminate\Support\Facades\Route;
 
@@ -46,6 +47,8 @@ Route::get('/login',[loginController::class,'index'])->name('login');
 Route::post('/login',[loginController::class,'login']);
 Route::get('/logout',[logoutController::class,'logout'])->name('logout');
 
+Route::get('venta2', [Venta2Controller::class, 'index']);
+
 Route::get('/401', function () {
     return view('pages.401');
 });
@@ -55,3 +58,4 @@ Route::get('/404', function () {
 Route::get('/500', function () {
     return view('pages.500');
 });
+
