@@ -42,7 +42,7 @@
                         <th>Nombre</th>
                         <th>Dirección</th>
                         <th>Documento</th>
-                        <th>Tipo de persona</th>
+
                         <th>Estado</th>
                         <th>Acciones</th>
                     </tr>
@@ -50,9 +50,7 @@
                 <tbody>
                     @foreach ($proveedores as $item)
                     <tr>
-                        <td>
-                            {{$item->persona->razon_social}}
-                        </td>
+
                         <td>
                             {{$item->persona->direccion}}
                         </td>

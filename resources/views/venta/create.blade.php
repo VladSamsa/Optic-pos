@@ -168,7 +168,7 @@
 
                         <!--Numero de comprobante-->
                         <div class="col-12">
-                            <label for="numero_comprobante" class="form-label">Numero de comprobante:</label>
+                            <label for="numero_comprobante" class="form-label">Graduación:</label>
                             <input required type="text" name="numero_comprobante" id="numero_comprobante" class="form-control">
                             @error('numero_comprobante')
                             <small class="text-danger">{{ '*'.$message }}</small>
