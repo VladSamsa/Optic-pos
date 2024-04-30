@@ -8,6 +8,7 @@ use App\Models\Documento;
 use App\Models\Persona;
 use App\Models\Proveedore;
 use Exception;
+use Illuminate\Console\View\Components\Info;
 use Illuminate\Support\Facades\DB;
 
 class proveedorController extends Controller
@@ -42,12 +43,14 @@ class proveedorController extends Controller
      */
     public function store(StorePersonaRequest $request)
     {
+
         try {
             DB::beginTransaction();
             $persona = Persona::create($request->validated());
             $persona->proveedore()->create([
                 'persona_id' => $persona->id
             ]);
+            print($persona->proveedore);
             DB::commit();
         } catch (Exception $e) {
             DB::rollBack();
