@@ -19,7 +19,7 @@ return new class extends Migration
             $table->decimal('impuesto',8,2,true);
             $table->string('numero_comprobante',255);
             $table->decimal('total',8,2,true);
-            $table->tinyInteger('estado')->default(1);
+            $table->tinyInteger('estado')->default(0);
             $table->foreignId('cliente_id')->nullable()->constrained('clientes')->onDelete('set null');
             $table->foreignId('user_id')->nullable()->constrained('users')->onDelete('set null');
             $table->foreignId('comprobante_id')->nullable()->constrained('comprobantes')->onDelete('set null');

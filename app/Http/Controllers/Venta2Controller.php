@@ -14,12 +14,15 @@ use Illuminate\Support\Facades\DB;
 class Venta2Controller extends Controller
 {
     public function index()
-{
-    $ventas = Venta::with(['comprobante', 'cliente.persona', 'user'])
-        ->where('estado', 1)
-        ->latest()
-        ->get();
+    {
+        $ventas = Venta::with(['comprobante', 'cliente.persona', 'user'])
+            ->latest()
+            ->get()
+            ->map(function ($venta) {
+                $venta['isCompleted'] = $venta['estado'] > 0;
+                return $venta;
+            });
 
-    return response()->json($ventas);
-}
+        return response()->json($ventas);
+    }
 }
