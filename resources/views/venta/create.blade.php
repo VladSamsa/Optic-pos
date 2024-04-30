@@ -176,7 +176,7 @@
 
                             <!--Numero de comprobante-->
                             <div class="col-12">
-                                <label for="numero_comprobante" class="form-label">Número de comprobante:</label>
+                                <label for="numero_comprobante" class="form-label">Graduación:</label>
                                 <input required type="text" name="numero_comprobante" id="numero_comprobante"
                                        class="form-control" value="{{ old('numero_comprobante') }}">
                                 @error('numero_comprobante')
