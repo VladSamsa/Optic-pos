@@ -11,7 +11,40 @@ class PresentacionSeeder extends Seeder
 
     public function run()
     {
-        $materiales =[ 'Plastico', 'Carton', 'Vidrio', 'Metal', 'Madera', 'Tela', 'Papel', 'Ceramica', 'Piedra', 'Otros'];
+        // Materiales de lentes
+        $materiales = ['Acetato',
+            'Metal',
+            'Titanio',
+            'Aluminio',
+            'Plástico',
+            'Nylon',
+            'Policarbonato',
+            'TR90',
+            'Silicona',
+            'Goma',
+            'Madera',
+            'Caucho',
+            'Cristal',
+            'Vidrio',
+            'Papel',
+            'Cartón',
+            'Tela',
+            'Cuero',
+            'Fibra de carbono',
+            'Fibra de vidrio',
+            'Fibra de aramida',
+            'Fibra de basalto',
+            'Fibra de kevlar',
+            'Fibra de polietileno',
+            'Fibra de polipropileno',
+            'Fibra de poliéster',
+            'Fibra de poliamida',
+            'Fibra de poliuretano',
+            'Fibra de polivinilo',
+            'Fibra de poliacrilonitrilo',
+            'Fibra de poliaramida',
+            'Fibra de poliéster',
+            ];
         $faker = \Faker\Factory::create();
         foreach ($materiales as $material) {
             $caracteristica = Caracteristica::factory()->create(
