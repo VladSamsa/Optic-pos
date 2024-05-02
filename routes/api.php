@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\Venta2Controller;
+use App\Http\Controllers\BusquedaController;
+use App\Http\Controllers\BusquedaVentaController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -30,3 +32,6 @@ Route::get('/ventas/complete_status', function (Request $request) {
 });
 
 Route::get('ventas', [Venta2Controller::class, 'index']);
+
+Route::get('/search/cliente', [BusquedaController::class, 'search']);
+

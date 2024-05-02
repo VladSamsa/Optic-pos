@@ -14,6 +14,13 @@ class Venta2Controller extends Controller
         if ($request->has('estado')) {
             $query->where('estado', $request->estado);
         }
+        if ($request->has('graduacion')){
+            $query->where('numero_comprobante',"LIKE", "%".$request->graduacion."%");
+        }
+
+        if ($request->has('fecha')){
+            $query->whereDate('fecha_hora', $request->fecha);
+        }
 
         $ventas = $query->get()->map(function ($venta) {
             $venta['isCompleted'] = $venta['estado'] > 0;
