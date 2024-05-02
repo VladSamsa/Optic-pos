@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\BusquedaController;
+use App\Http\Controllers\BusquedaVendedorController;
+use App\Http\Controllers\BusquedaVentaController;
 use App\Http\Controllers\categoriaController;
 use App\Http\Controllers\clienteController;
 use App\Http\Controllers\compraController;
@@ -14,6 +17,7 @@ use App\Http\Controllers\proveedorController;
 use App\Http\Controllers\roleController;
 use App\Http\Controllers\userController;
 use App\Http\Controllers\Venta2Controller;
+use App\Http\Controllers\User2Controller;
 use App\Http\Controllers\ventaController;
 use Illuminate\Support\Facades\Route;
 
@@ -48,6 +52,17 @@ Route::post('/login',[loginController::class,'login']);
 Route::get('/logout',[logoutController::class,'logout'])->name('logout');
 
 Route::get('venta2', [Venta2Controller::class, 'index']);
+
+Route::get('/search/cliente', [BusquedaController::class, 'search']);
+
+Route::get('/search/vendedor', [BusquedaVendedorController::class, 'search']);
+
+Route::get('/search/graduacion', [BusquedaVentaController::class, 'search']);
+
+
+
+
+
 
 Route::get('/401', function () {
     return view('pages.401');
