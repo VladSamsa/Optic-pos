@@ -8,13 +8,7 @@ use App\Models\Categoria;
 
 class CategoriaSeeder extends Seeder
 {
-    public $categorias = [
-        'Belleza', 'Hogar', 'Tecnología', 'Deportes', 'Moda', 'Juguetes', 'Mascotas', 'Libros', 'Electrodomésticos', 'Jardinería',
-        'Música', 'Cine', 'Fotografía', 'Arte', 'Literatura', 'Ciencia', 'Educación', 'Salud', 'Fitness', 'Viajes',
-        'Gastronomía', 'Automóviles', 'Inmobiliaria', 'Finanzas', 'Negocios', 'Marketing', 'Diseño', 'Programación', 'Videojuegos', 'Medicina',
-        'Bricolaje', 'Decoración', 'Muebles', 'Ropa', 'Zapatos', 'Accesorios', 'Joyería', 'Relojes', 'Perfumería', 'Cosméticos',
-        'Bebidas', 'Alimentos', 'Cocina', 'Bebés', 'Niños', 'Adolescentes', 'Adultos', 'Ancianos', 'Hombres', 'Mujeres'
-    ];
+    public $categorias = ['Armazón', 'Mica', 'Lente', 'Estuche', 'Paño', 'Líquido', 'Cordón', 'Funda', 'Clip'];
 
     public function run(): void
     {

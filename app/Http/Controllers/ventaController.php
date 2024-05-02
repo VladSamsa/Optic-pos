@@ -20,17 +20,21 @@ class ventaController extends Controller
         $this->middleware('permission:mostrar-venta', ['only' => ['show']]);
         $this->middleware('permission:eliminar-venta', ['only' => ['destroy']]);
     }
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $ventas = Venta::with(['comprobante','cliente.persona','user'])
-        ->where('estado',1)
-        ->latest()
-        ->get();
+        $ventas = Venta::with(['comprobante', 'cliente.persona', 'user'])
+            ->latest()
+            ->get()
+            ->map(function ($venta) {
+                $venta['status'] = $venta['estado'] > 0 ? 'COMPLETADO' : 'PENDIENTE';
+                return $venta;
+            });
 
-        return view('venta.index',compact('ventas'));
+        return view('venta.index', compact('ventas'));
     }
 
     /**
@@ -69,7 +73,7 @@ class ventaController extends Controller
      */
     public function store(StoreVentaRequest $request)
     {
-        try{
+        try {
             DB::beginTransaction();
 
             //Llenar mi tabla venta
@@ -86,12 +90,12 @@ class ventaController extends Controller
             $siseArray = count($arrayProducto_id);
             $cont = 0;
 
-            while($cont < $siseArray){
+            while ($cont < $siseArray) {
                 $venta->productos()->syncWithoutDetaching([
                     $arrayProducto_id[$cont] => [
                         'cantidad' => $arrayCantidad[$cont],
                         'precio_venta' => $arrayPrecioVenta[$cont],
-                        'descuento' => $arrayDescuento[$cont]
+                        'descuento' => $arrayDescuento[$cont],
                     ]
                 ]);
 
@@ -101,20 +105,21 @@ class ventaController extends Controller
                 $cantidad = intval($arrayCantidad[$cont]);
 
                 DB::table('productos')
-                ->where('id',$producto->id)
-                ->update([
-                    'stock' => $stockActual - $cantidad
-                ]);
+                    ->where('id', $producto->id)
+                    ->update([
+                        'stock' => $stockActual - $cantidad
+                    ]);
 
                 $cont++;
             }
 
             DB::commit();
-        }catch(Exception $e){
+        } catch (Exception $e) {
             DB::rollBack();
+            dd($e->getMessage());
         }
 
-        return redirect()->route('ventas.index')->with('success','Venta exitosa');
+        return redirect()->route('ventas.index')->with('success', 'Venta exitosa');
     }
 
     /**
@@ -122,7 +127,7 @@ class ventaController extends Controller
      */
     public function show(Venta $venta)
     {
-        return view('venta.show',compact('venta'));
+        return view('venta.show', compact('venta'));
     }
 
     /**
@@ -146,11 +151,17 @@ class ventaController extends Controller
      */
     public function destroy(string $id)
     {
-        Venta::where('id',$id)
-        ->update([
-            'estado' => 0
-        ]);
+        Venta::where('id', $id)->delete();
 
-        return redirect()->route('ventas.index')->with('success','Venta eliminada');
+        return redirect()->route('ventas.index')->with('success', 'Venta eliminada');
+    }
+
+    public function complete_status(Request $request)
+    {
+        $venta = Venta::find($request->id);
+        $venta->estado = 1;
+        $venta->save();
+
+        return response()->json(['success' => 'Venta completada']);
     }
 }

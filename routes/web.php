@@ -46,6 +46,7 @@ Route::resources([
     'roles' => roleController::class,
     'profile' => profileController::class
 ]);
+Route::post('/ventas/complete_status', [App\Http\Controllers\ventaController::class, 'complete_status']);
 
 Route::get('/login',[loginController::class,'index'])->name('login');
 Route::post('/login',[loginController::class,'login']);
